@@ -112,16 +112,12 @@ void loop() {
       lastReading = rtc.time();
     } else if ( recording ) {
       displayState = alternateActiveDisplay(displayState);
-    } else {
-      displayState = alternateIdleDisplay(displayState);
     }
   }
 
   if (millis() % 500 && !displayState) {
     if (recording) {
       updateActiveTime();
-    } else {
-      updateIdleTime();
     }
   }
 
@@ -131,11 +127,6 @@ void loop() {
 void updateActiveTime() {
   push(createDisplayTimeStamp(rtc.time()));
   push(createDisplayTimeStamp(lastReading));
-}
-
-void updateIdleTime() {
-  push("IDLE");
-  push(createDisplayTimeStamp(rtc.time()));
 }
 
 String createDisplayTimeStamp(Time t) {
@@ -178,20 +169,6 @@ int alternateActiveDisplay(int state) {
   } else {
     //show idle + time
     updateActiveTime();
-    state = 1;
-  }
-  return state;
-}
-
-int alternateIdleDisplay(int state) {
-  if (state) {
-    //show idle + msg
-    push("IDLE");
-    push("PUSH BTN TO STRT");
-    state = 0;
-  } else {
-    //show idle + time
-    updateIdleTime();
     state = 1;
   }
   return state;
