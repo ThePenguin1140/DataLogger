@@ -26,7 +26,7 @@ DS1302 rtc(RST, DAT, CLK);
 LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
 DHT dht(DHTPIN, DHTTYPE);
 
-String displayContent[2][16];
+char displayContent[2][16];
 int counter;
 
 void setup() {
