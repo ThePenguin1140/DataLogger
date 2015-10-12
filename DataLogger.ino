@@ -15,10 +15,10 @@
 #define BTN 13
 #define RS 7
 #define E 8
-#define D4 9
-#define D5 10
-#define D6 11
-#define D7 12
+#define D4 A1
+#define D5 A2
+#define D6 A3
+#define D7 A4
 
 boolean setClock = false;
 
