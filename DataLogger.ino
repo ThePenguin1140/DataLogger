@@ -116,6 +116,15 @@ void recordReading(counter) {
 void push(String text) {
     if( sizeof(text)/sizeof(char) < 16 ){
     }
+
+String copyString(arr) {
+    int arrLength = sizeof(arr)/sizeof(char);
+    char copy[arrLength] = {};
+
+    for(int i = 0; i < arrLength; i++ ) {
+        copy[i] = arr[i];
+    }
+    return copy;
 }
 
 String bufferString(text, bufferChar) {
