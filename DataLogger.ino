@@ -90,6 +90,8 @@ void setup() {
 }
 
 void loop() {
+    int toggleRecording = digitalRead(BTN);
+
     if (toggleRecording && recording) {
         recording = false;
         push("Complete");
