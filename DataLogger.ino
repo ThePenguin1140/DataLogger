@@ -102,6 +102,8 @@ void setup() {
 void loop() {
   int toggleRecording = digitalRead(BTN);
 
+  //check if the button is pressed and change
+  //the state of the system accordingly
   if (toggleRecording && recording) {
     recording = false;
     digitalWrite(INDICATOR, LOW);
@@ -113,15 +115,21 @@ void loop() {
     push("Starting...");
   }
 
+  //ever 10 seconds
   if (millis() % 10000) {
+    //every 5 minutes if we're recording
     if ( recording && millis() % 300000 ) {
+      //write a reading to the log file
       recordReading(counter++);
       lastReading = rtc.time();
     } else if ( recording ) {
+      //otherwise just update the screen
       displayState = alternateActiveDisplay(displayState);
     }
   }
 
+  //every half second update the time if it's the
+  //current display on the unit
   if (millis() % 500 && !displayState) {
     if (recording) {
       updateActiveTime();
