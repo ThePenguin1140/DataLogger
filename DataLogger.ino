@@ -36,12 +36,14 @@ String fileName;
 void setup() {
   Serial.begin(9600);
 
+  //configure ethernet shield
   Serial.print("Disable Ethernet...");
   pinMode(10, OUTPUT);
   Serial.print("...");
   digitalWrite(10, HIGH);
   Serial.println("DONE");
 
+  //init SD
   Serial.print("Initializing SD card communications...");
   if ( !SD.begin(4) ) {
     Serial.println("FAILED");
@@ -49,6 +51,7 @@ void setup() {
   }
   Serial.println("DONE");
 
+  //Init Log file
   Serial.print("Searching for log file...");
   Time t = rtc.time();
   fileName = String(t.yr) + "-" + String(t.mon) + "-" + String(t.date) + "-DataLog.csv";
@@ -71,14 +74,17 @@ void setup() {
     Serial.println("ERROR");
   }
 
+  //config various pins
   Serial.print("Setting pin modes...");
   pinMode(BTN, INPUT);
   Serial.print("...");
   pinMode(INDICATOR, OUTPUT);
   Serial.println("DONE");
 
+  //set clock if selected
   if (setClock) {
     Serial.print("Setting Clock...");
+    //TODO accept input through serial
     Time t(2015, 10, 9, 12, 00, 00, Time::kFriday);
     rtc.time(t);
     Serial.println("DONE");
@@ -86,6 +92,7 @@ void setup() {
 
   counter = 0;
 
+  //init display
   Serial.print("Initializing Display...");
   push("IDLE");
   push("PUSH BTN TO STRT");
