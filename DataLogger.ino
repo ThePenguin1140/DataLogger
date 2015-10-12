@@ -4,13 +4,27 @@
 #include <LiquidCrystal.h>  //Screen
 #include <DS1302.h> //Clock
 
-#define RST 4
+#define RST 2
 #define DAT 3
-#define CLK 2
+#define CLK 4
+
+#define DHTPIN 5
+#define DHTTYPE DHT11
+#define INDICATOR 6
+#define LIGHT A0
+#define BTN 13
+#define RS 7
+#define E 8
+#define D4 9
+#define D5 10
+#define D6 11
+#define D7 12
 
 boolean setClock = false;
 
 DS1302 rtc(RST, DAT, CLK);
+LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
+DHT dht(DHTPIN, DHTTYPE);
 
 String displayContent[2][16];
 int counter;
