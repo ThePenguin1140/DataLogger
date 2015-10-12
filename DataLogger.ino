@@ -6,9 +6,9 @@
 
 #define RST 2
 #define DAT 3
-#define CLK 4
+#define CLK 5
 
-#define DHTPIN 5
+#define DHTPIN A5
 #define DHTTYPE DHT11
 #define INDICATOR 6
 #define LIGHT A0
