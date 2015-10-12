@@ -114,8 +114,17 @@ void recordReading(counter) {
 }
 
 void push(String text) {
+    displayContent[1].toCharArray( displayContent[0], 16 );
     if( sizeof(text)/sizeof(char) < 16 ){
+        text = bufferString(text, "*");
     }
+    text.toCharArray( displayContent[1], 16 );
+
+    lcd.setCursor(0,0);
+    lcd.println(displayContent[0]);
+    lcd.setcursor(0,1);
+    lcd.println(displayContent[1]);
+}
 
 String copyString(arr) {
     int arrLength = sizeof(arr)/sizeof(char);
