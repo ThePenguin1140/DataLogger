@@ -102,7 +102,7 @@ void loop() {
 
     if (recording) {
         if (fiveInterval) {
-            recordReading(counter);
+            recordReading(counter++);
         }
     }
 }
