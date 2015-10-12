@@ -114,11 +114,12 @@ void recordReading(counter) {
 }
 
 void push(String text) {
-    displayContent[0] = copyArr( displayContent[1] );
     if( sizeof(text)/sizeof(char) < 16 ){
-        bufferString(text, "*");
     }
-    displayContent[1] = text;
+}
+
+String bufferString(text, bufferChar) {
+
 }
 
 String createTimeStampString(int year, int month, int day, int hour, int minute, int second) {
