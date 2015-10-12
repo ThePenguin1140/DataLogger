@@ -32,15 +32,32 @@ int counter;
 void setup() {
     Serial.begin(9600);
 
+    Serial.println("Disable Ethernet...");
+    pinMode(10, OUTPUT);
+    Serial.print("...");
+    digitalWrite(10, HIGH);
+    
+
+    Serial.println("Setting pin modes...");
+    pinMode(BTN, INPUT);
+    Serial.print("...");
+    pinMode(INDICATOR, OUTPUT);
+    Serial.print("DONE");
+
     if (setClock) {
+        Serial.println("Setting Clock...");
         Time t(2015, 10, 9, 12, 00, 00, Time::kFriday);
         rtc.time(t);
+        Serial.println("DONE");
     }
 
     counter = 0;
+
+    Serial.println("Initializing Display...");
     displayContent[0] = displayContent[1] = "---------------";
     push("IDLE");
-    push("PUSH BTN 2 STR");
+    push("PUSH BTN TO STRT");
+    Serial.println("DONE");
 }
 
 void loop() {
