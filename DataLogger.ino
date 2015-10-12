@@ -45,6 +45,28 @@ void setup() {
     }
     Serial.println("DONE");
 
+    Serial.print("Searching for log file...");
+    Time t = rtc.time();
+    String fileName = String(t.yr) + "-" + String(t.mon) + "-" + String(t.date) + "-DataLog.csv";
+    Serial.print("file name: " + fileName + "...");
+    if ( SD.exists(fileName) ) {
+        Serial.println("FOUND");
+        Serial.print("Removing file...");
+        SD.remove(fileName);
+        Serial.println("DONE");
+    }
+    Serial.println("DONE");
+
+    Serial.print("Creating new Log File...");
+    File logFile = SD.open(fileName, FILE_WRITE);
+    Serial.print("...");
+    if (logFile) {
+        Serial.println("DONE");
+        logFile.close();
+    } else {
+        Serial.println("ERROR");
+    }
+
     Serial.print("Setting pin modes...");
     pinMode(BTN, INPUT);
     Serial.print("...");
