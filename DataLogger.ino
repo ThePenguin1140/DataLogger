@@ -30,7 +30,8 @@ char displayContent[2][16];
 int counter = 0;
 int displayState = 0;
 boolean recording = false;
-Time lastReading = rtc.time();
+Time lastReadingTime = rtc.time();
+int lastReading[3];
 String fileName;
 
 void setup() {
@@ -121,7 +122,7 @@ void loop() {
     if ( recording && millis() % 300000 ) {
       //write a reading to the log file
       recordReading(counter++);
-      lastReading = rtc.time();
+      lastReadingTime = rtc.time();
     } else if ( recording ) {
       //otherwise just update the screen
       displayState = alternateActiveDisplay(displayState);
@@ -141,7 +142,7 @@ void loop() {
 
 void updateActiveTime() {
   push(createDisplayTimeStamp(rtc.time()));
-  push(createDisplayTimeStamp(lastReading));
+  push(createDisplayTimeStamp(lastReadingTime));
 }
 
 String createDisplayTimeStamp(Time t) {
@@ -176,9 +177,9 @@ int alternateActiveDisplay(int state) {
     //show idle + msg
     push("LS# " + counter);
     push(
-      "T " + readTemp() +
-      "H " + readHumidity() +
-      "L " + readLight()
+      "T " + lastReading[0] +
+      "H " + lastReading[1] +
+      "L " + lastReading[2]
     );
     state = 0;
   } else {
@@ -209,7 +210,9 @@ String constructLogEntry() {
 
 void recordReading(int counter) {
   String line = constructLogEntry();
-
+  lastReading[0] = readTemp();
+  lastReading[1] = readHumidity();
+  lastReading[2] = readLight();
   File logFile = SD.open(fileName);
   if (logFile) {
     Serial.println(line);
