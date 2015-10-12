@@ -236,6 +236,7 @@ void push(String text) {
   }
   text.toCharArray( displayContent[1], 16 );
 
+  lcd.clear();
   lcd.setCursor(0, 0);
   lcd.write(displayContent[0]);
   lcd.setCursor(0, 1);
