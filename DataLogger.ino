@@ -28,6 +28,8 @@ DHT dht(DHTPIN, DHTTYPE);
 
 char displayContent[2][16];
 int counter;
+int setClock = true;
+boolean recording = false;
 
 void setup() {
     Serial.begin(9600);
