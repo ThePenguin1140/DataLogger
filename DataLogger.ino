@@ -99,7 +99,7 @@ void loop() {
     recording = false;
     digitalWrite(INDICATOR, LOW);
     push(createDisplayTimeStamp(rtc.time()));
-    push("Complete");
+    push("COMPLETE");
   } else if (toggleRecording && !recording) {
     recording = true;
     digitalWrite(INDICATOR, HIGH);
