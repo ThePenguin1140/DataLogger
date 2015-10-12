@@ -76,6 +76,10 @@ void loop() {
     }
 }
 
+void recordReading(counter) {
+
+}
+
 void push(String text) {
     displayContent[0] = copyArr( displayContent[1] );
     if( sizeof(text)/sizeof(char) < 16 ){
