@@ -137,7 +137,19 @@ String copyString(arr) {
 }
 
 String bufferString(text, bufferChar) {
+    int textLength = sizeof(text)/sizeof(char);
+    int space = 16 - textLength; //REMARK might be off by one
+    String output = "";
 
+    for (int i = 0; i < space/2; i++) {
+        output += bufferChar;
+    }
+    output += text;
+    for (int i = 0; i < space/2; i++) {
+        output += bufferChar;
+    }
+    if (space%2) output += bufferChar;
+    return output;
 }
 
 String createTimeStampString(int year, int month, int day, int hour, int minute, int second) {
