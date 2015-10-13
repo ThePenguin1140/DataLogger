@@ -125,9 +125,9 @@ void loop() {
   }
 
   //ever 10 seconds  
-  if (millis()%10000==0) {
-    //every 5 minutes if we're recording
-    if ( recording && millis()%300000==0) {
+  if (millis()%5000==0) {
+    //every 5 minutes if we're recording300000
+    if ( recording && millis()%10000==0) {
       //write a reading to the log file
       recordReading();
       Serial.println(constructLogEntry());
