@@ -57,6 +57,7 @@ void setup() {
   Time t = rtc.time();
   fileName = String(t.yr) + "-" + String(t.mon) + "-" + String(t.date) + "-DataLog.csv";
   Serial.print("file name: " + fileName + "...");
+  //TODO figure out how to use fileName as a parameter
   if ( SD.exists("test.csv") ) {
     Serial.println("FOUND");
     Serial.print("Removing file...");
@@ -261,6 +262,7 @@ String copyString(char arr[]) {
   return copy;
 }
 
+//FIXME is not centering text
 String bufferString(String text, char bufferChar) {
   int textLength = sizeof(text) / sizeof(char);
   int space = 16 - textLength; //REMARK might be off by one
