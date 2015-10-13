@@ -143,13 +143,11 @@ void loop() {
 
   //every half second update the time if it's the
   //current display on the unit
-  if (millis()%500==0 && !displayState) {
+  if (millis()%900==0 && displayState) {
     if (recording) {
       updateActiveTime();
     }
   }
-
-  //Serial.println(constructLogEntry());
 }
 
 void updateActiveTime() {
