@@ -151,8 +151,8 @@ void loop() {
 }
 
 void updateActiveTime() {
-  push(createDisplayTimeStamp(rtc.time()));
-  push(createDisplayTimeStamp(lastReadingTime));
+  push("CT " + createDisplayTimeStamp(rtc.time()));
+  push("LS " + createDisplayTimeStamp(lastReadingTime));
 }
 
 String createDisplayTimeStamp(Time t) {
