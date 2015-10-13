@@ -111,7 +111,6 @@ void setup() {
 }
 
 void loop() {
-
   //check if the button is pressed and change
   int btn = digitalRead(BTN);
   //the state of the system accordingly
@@ -128,11 +127,12 @@ void loop() {
 
   //ever 10 seconds  
   if (millis()%10000==0) {
-    Serial.println(constructLogEntry());
     //every 5 minutes if we're recording
     if ( recording && millis()%300000==0) {
       //write a reading to the log file
-      recordReading(counter++);
+      recordReading();
+      Serial.println(constructLogEntry());
+      counter++;
       lastReadingTime = rtc.time();
     } else if ( recording ) {
       //otherwise just update the screen
@@ -219,7 +219,7 @@ String constructLogEntry() {
   readTemp() + ", " + readHumidity() + ", " + readLight();
 }
 
-void recordReading(int counter) {
+void recordReading() {
   String line = constructLogEntry();
   lastReading[0] = readTemp();
   lastReading[1] = readHumidity();
