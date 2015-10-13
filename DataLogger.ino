@@ -94,8 +94,6 @@ void setup() {
     Serial.println("DONE");
   }
 
-  counter = 0;
-
   //init display
   lcd.begin(16,2);
   Serial.print("Initializing Display...");
