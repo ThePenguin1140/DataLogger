@@ -26,7 +26,7 @@ DS1302 rtc(RST, DAT, CLK);
 LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
 DHT dht(DHTPIN, DHTTYPE);
 
-char displayContent[2][16];
+char displayContent[2][17];
 int counter = 0;
 int displayState = 0;
 boolean recording = false;
@@ -235,11 +235,13 @@ void recordReading() {
 }
 
 void push(String text) {
-  String(displayContent[1]).toCharArray( displayContent[0], 16 );
+  String(displayContent[1]).toCharArray( displayContent[0], 17 );
+  //FIXME is buffering strings that are long enough
+  //maybe try turning down to like 14
   //if ( sizeof(text)/sizeof(char)<16 ) {
   //  text = bufferString(text, '*');
   //}
-  text.toCharArray( displayContent[1], 16 );
+  text.toCharArray( displayContent[1], 17 );
 
   lcd.clear();
   lcd.setCursor(0, 0);
