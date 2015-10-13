@@ -185,11 +185,11 @@ String createLogTimeStamp(Time t) {
 int alternateActiveDisplay(int state) {
   if (state) {
     //show idle + msg
-    push("LS# " + counter);
+    push("LS# " + String(counter) );
     push(
-      "T " + lastReading[0] +
-      "H " + lastReading[1] +
-      "L " + lastReading[2]
+      "T:" + lastReading[0] +
+      " H:" + lastReading[1] +
+      " L:" + lastReading[2]
     );
     state = 0;
   } else {
