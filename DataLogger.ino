@@ -117,11 +117,13 @@ void loop() {
     digitalWrite(INDICATOR, LOW);
     push("");
     push("COMPLETE");
+    delay(500);
   } else if (btn && !recording) {
     recording = true;
     digitalWrite(INDICATOR, HIGH);
     push("");
     push("Starting...");
+    delay(500);
   }
 
   //ever 10 seconds  
