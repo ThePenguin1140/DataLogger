@@ -115,11 +115,12 @@ void loop() {
   if (btn && recording) {
     recording = false;
     digitalWrite(INDICATOR, LOW);
-    push(createDisplayTimeStamp(rtc.time()));
+    push("");
     push("COMPLETE");
   } else if (btn && !recording) {
     recording = true;
     digitalWrite(INDICATOR, HIGH);
+    push("");
     push("Starting...");
   }
 
