@@ -20,7 +20,7 @@
 #define D6 A3
 #define D7 A4
 
-boolean setClock = true;
+boolean setClock = false;
 
 DS1302 rtc(RST, DAT, CLK);
 LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
@@ -30,7 +30,7 @@ char displayContent[2][16];
 int counter = 0;
 int displayState = 0;
 boolean recording = false;
-Time lastReadingTime = rtc.time();
+Time lastReadingTime(0,0,0,0,0,0,Time::kSunday);
 String lastReading[3];
 String fileName;
 
@@ -86,9 +86,8 @@ void setup() {
   //set clock if selected
   if (setClock) {
     Serial.print("Setting Clock...");
-    rtc.writeProtect(false);
     rtc.halt(false);
-    //TODO accept input through serial
+    rtc.writeProtect(false);
     Time t(2015, 10, 9, 12, 00, 00, Time::kFriday);
     rtc.time(t);
     Serial.println("DONE");
