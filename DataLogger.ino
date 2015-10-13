@@ -160,7 +160,7 @@ String createDisplayTimeStamp(Time t) {
     makeDoubleDigit(t.yr - 2000) +
     makeDoubleDigit(t.mon) +
     makeDoubleDigit(t.date) +
-    " " +
+    "-" +
     makeDoubleDigit(t.hr) +
     makeDoubleDigit(t.min) +
     makeDoubleDigit(t.sec);
